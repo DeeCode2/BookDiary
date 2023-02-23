@@ -1,0 +1,36 @@
+//COLORS
+$primary: #fefaf3;
+$dark: #212121;
+$orange: #e16a30;
+$light: whitesmoke;
+$yello: #f5ad35;
+$darkGreen: #387b5a;
+
+$primary1: #FFFCF2;
+$primary2: #260101;
+$black: #212121;
+$med-grey: #545454;
+$light-grey: #8E8E8E;
+$white: #FCFCFC;
+$yellow: #FFC14A;
+$green: #FFC14A;
+$red: #FFC14A;
+//COLORS
+//$COLOR1:
+
+@mixin default-border {
+    border: 1px solid $light-grey;
+};
+
+$border-radius: 0.8em 0.3em 0.3em 0.8em;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $primary1;
+    color: $dark;
+}

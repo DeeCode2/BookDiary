@@ -1,0 +1,35 @@
+@use '../App.scss';
+#nav-container {
+    //border: solid red;
+    background-color: App.$primary2;
+    box-shadow: none;
+    display: flex;
+    //align-items: end;
+    
+    #navlinks {
+        //border: solid red;
+        width: 450px;
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        a {
+            //border: solid green;
+            width: 25%;
+            color: App.$primary1;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            
+            justify-content: space-evenly;
+        }
+    }
+
+    button {
+        border-radius: 3em;
+        padding: .7em 1em;
+        background-color: App.$yellow;
+        cursor: pointer;
+    }
+}

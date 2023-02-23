@@ -1,0 +1,171 @@
+@use '../App.scss';
+
+
+@mixin basic-alignment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// @mixin basic-sizing {
+//   aspect-ratio: 1/1.4;
+//   position: relative;
+//   cursor: pointer;
+// }
+
+// @mixin blueBook {
+//   .cover {
+//     background-color: #3949ab;
+
+//     &:before {
+//       background-color: #283593;
+//       border-right: solid #1a237e;
+//     }
+//   }
+
+//   .book-base {
+//     border: solid 0.5em #1a237e;
+//     border-right: none;
+//     background-color: #f9fbe7;
+
+//     .bookmark {
+//       background-color: #d81b60;
+//     }
+//   }
+// }
+
+main {
+  margin: 5em auto;
+  max-width: 1200px;
+
+  @media only screen and (max-width: 1200px) {
+    padding: 0 1.5em;
+  }
+
+  #search-input {
+    margin: 2em 0;
+    //padding: 1em;
+    width: 100%;
+    border-radius: 3em;
+    @include App.default-border;
+    background-color: App.$white;
+    display: flex;
+    align-items: center;
+
+    @media only screen and (min-width: 900px) {
+      width: 50%;
+    }
+
+    &:hover, &:focus {
+      border: solid 1px App.$black;
+      outline: none;
+    }
+
+    input {
+      border-radius: 3em;
+      border: none;
+      width: 90%;
+      height: 100%;
+      padding: 1em;
+
+      &:hover, &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+  }
+
+  #books {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 2em;
+
+    .book-slot {
+      min-height: 300px;
+      aspect-ratio: 1/2;
+
+      button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        height: 100%;
+        background-color: App.$white;
+        border-radius: 0.7em;
+        cursor: pointer;
+
+        font-size: 1.5rem;
+        font-weight: bold;
+        @include App.default-border;
+      }
+    }
+
+    // .book-wrapper {
+    //   .book-container {
+    //     @include basic-sizing;
+    //     @include blueBook;
+    //     box-shadow: 0.2em 0.5em 20px 0px #bdbdbd;
+    //     transition: 0.3s;
+    //     margin-bottom: 1.5em;
+    //     //box-shadow: inset 0em 0em 0.5em red;
+
+    //     .cover {
+    //       border-radius: $border-radius;
+    //       height: 100%;
+    //       position: relative;
+    //       display: flex;
+    //       justify-content: center;
+    //       padding-left: 15%;
+    //       box-shadow: inset 0em 0em 1em #1a237e;
+
+    //       h3 {
+    //         font-family: "Berkshire Swash", cursive;
+    //         padding-top: 30%;
+    //         //color: #FFC400;
+    //       }
+
+    //       &:before {
+    //         content: "";
+    //         position: absolute;
+    //         left: 0;
+    //         width: 14%;
+    //         height: 100%;
+    //         border-radius: $border-radius;
+    //       }
+    //     }
+
+    //     .book-base {
+    //       width: 100%;
+    //       height: 10%;
+    //       border-radius: $border-radius;
+    //       position: absolute;
+    //       bottom: 0;
+
+    //       .bookmark {
+    //         position: absolute;
+    //         width: 30%;
+    //         right: 10%;
+    //         height: 250%;
+    //         transition: 0.3s;
+    //       }
+    //     }
+
+    //     &:hover {
+    //       transform: translateY(-5%);
+    //       box-shadow: 0.5em 0.8em 20px 0px #bdbdbd;
+
+    //       .bookmark {
+    //         height: 300%;
+    //       }
+    //     }
+    //   }
+
+    //   .rating-container {
+    //     //border: solid blue;
+    //     padding: 0.5em 0;
+    //   }
+    // }
+  }
+}

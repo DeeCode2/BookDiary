@@ -1,0 +1,96 @@
+@use "../App.scss";
+
+@mixin basic-sizing {
+  aspect-ratio: 1/1.4;
+  position: relative;
+  cursor: pointer;
+}
+
+@mixin blueBook {
+  .cover {
+    background-color: #3949ab;
+
+    &:before {
+      background-color: #283593;
+      border-right: solid #1a237e;
+    }
+  }
+
+  .book-base {
+    border: solid 0.5em #1a237e;
+    border-right: none;
+    background-color: #f9fbe7;
+
+    .bookmark {
+      background-color: #d81b60;
+    }
+  }
+}
+
+.book-wrapper {
+
+  .book-container {
+    @include basic-sizing;
+    @include blueBook;
+    border-radius: App.$border-radius;
+    box-shadow: 0.2em 0.5em 20px 0px #bdbdbd;
+    transition: 0.3s;
+    margin-bottom: 1.5em;
+    //box-shadow: inset 0em 0em 0.5em red;
+
+    .cover {
+      border-radius: App.$border-radius;
+      height: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding-left: 15%;
+      box-shadow: inset 0em 0em 1em #1a237e;
+
+      h3 {
+        font-family: "Berkshire Swash", cursive;
+        padding-top: 30%;
+        //color: #FFC400;
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 14%;
+        height: 100%;
+        border-radius: App.$border-radius;
+      }
+    }
+
+    .book-base {
+      width: 100%;
+      height: 10%;
+      border-radius: App.$border-radius;
+      position: absolute;
+      bottom: 0;
+
+      .bookmark {
+        position: absolute;
+        width: 30%;
+        right: 10%;
+        height: 250%;
+        transition: 0.3s;
+      }
+    }
+
+    &:hover {
+      transform: translateY(-5%);
+      box-shadow: 0.5em 0.8em 20px 0px #bdbdbd;
+
+      .bookmark {
+        height: 300%;
+      }
+    }
+  }
+
+  .rating-container {
+    //border: solid blue;
+    padding: 0.5em 0;
+  }
+}
