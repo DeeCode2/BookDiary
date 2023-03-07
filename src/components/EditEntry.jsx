@@ -55,13 +55,16 @@ function EditEntry() {
 
   
 
-  //loop over deleted library to make sure that the ids are consistent
-  for (let i = 0; i < deletedBookLibrary.length; i++) {
-    deletedBookLibrary[i].bookID = i+1;
-  }
+  
 
 
   function deleteBookEntry() {
+
+    //loop over deleted library to make sure that the ids are consistent
+    for (let i = 0; i < deletedBookLibrary.length; i++) {
+      deletedBookLibrary[i].bookID = i+1;
+    }
+
     try {
       updateDoc(doc(firestore, userId, "library"), {
         library: deletedBookLibrary,
@@ -117,7 +120,7 @@ function EditEntry() {
                 const ref = doc(firestore, userId, "library");
 
                 //get index of unedited recipe
-                const bookIndex = editedEntry.bookID;
+                const bookIndex = editedEntry.bookID - 1;
 
                 //copy array
                 const newArr = docSnap.data().library;
