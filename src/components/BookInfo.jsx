@@ -4,7 +4,9 @@ import { useParams } from "react-router-dom";
 import { auth, firestore } from "../config/Firebase";
 import { doc, getDoc } from "firebase/firestore";
 // import '../styles/ModalPopup.scss';
+import Navbar from "./Navbar";
 import EditEntry from "./EditEntry";
+import "../styles/BookInfo.scss"
 
 //MUI components
 import Box from "@mui/material/Box";
@@ -63,36 +65,41 @@ function BookInfo() {
   }, []);
 
   return (
-    <section id="book-detail-container">
-      <div className="book-wrapper">
-        <div className="book-container" key={bookCard.bookID}>
-          <div className="cover">
-            <h3>{bookCard.title}</h3>
-          </div>
-          <div className="book-base">
-            <div className="bookmark"></div>
+    <div>
+      <Navbar />
+      <main id="book-detail-container">
+        <div className="book-wrapper">
+          <div className="book-container" key={bookCard.bookID}>
+            <div className="cover">
+              <h3>{bookCard.title}</h3>
+            </div>
+            <div className="book-base">
+              <div className="bookmark"></div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div id="info-container">
-        <h1>{bookCard.title}</h1>
-        <Box
-          sx={{
-            "& > legend": { mt: 2 },
-          }}
-        >
-          <Typography component="legend">Rating</Typography>
-          <Rating
-            name="simple-controlled"
-            value={bookRating}
-            precision={0.5}
-            readOnly
-          />
-        </Box>
-        <Link to={`/library/${bookCard.bookID}/edit`}>Edit entry</Link>
-      </div>
-    </section>
+        <div id="info-container">
+          <h1>{bookCard.title}</h1>
+          <h2>{bookCard.author}</h2>
+          <Box
+            sx={{
+              "& > legend": { mt: 2 },
+            }}
+          >
+            <Typography component="legend">Rating</Typography>
+            <Rating
+              name="simple-controlled"
+              value={bookRating}
+              precision={0.5}
+              readOnly
+            />
+          </Box>
+          <Link to={`/library/${bookCard.bookID}/edit`}>Edit entry</Link>
+        </div>
+      </main>  
+    </div>
+    
   );
 }
 

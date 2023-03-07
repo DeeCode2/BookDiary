@@ -1,37 +1,37 @@
 @use "../App.scss";
-
+@use "./BookPalette.scss";
 @mixin basic-sizing {
   aspect-ratio: 1/1.4;
   position: relative;
   cursor: pointer;
 }
 
-@mixin blueBook {
-  .cover {
-    background-color: #3949ab;
+// @mixin blueBook {
+//   .cover {
+//     background-color: #3949ab;
 
-    &:before {
-      background-color: #283593;
-      border-right: solid #1a237e;
-    }
-  }
+//     &:before {
+//       background-color: #283593;
+//       border-right: solid #1a237e;
+//     }
+//   }
 
-  .book-base {
-    border: solid 0.5em #1a237e;
-    border-right: none;
-    background-color: #f9fbe7;
+//   .book-base {
+//     border: solid 0.5em #1a237e;
+//     border-right: none;
+//     background-color: #f9fbe7;
 
-    .bookmark {
-      background-color: #d81b60;
-    }
-  }
-}
+//     .bookmark {
+//       background-color: #d81b60;
+//     }
+//   }
+// }
 
 .book-wrapper {
 
   .book-container {
     @include basic-sizing;
-    @include blueBook;
+    @include BookPalette.blueBook;
     border-radius: App.$border-radius;
     box-shadow: 0.2em 0.5em 20px 0px #bdbdbd;
     transition: 0.3s;
@@ -46,11 +46,13 @@
       justify-content: center;
       padding-left: 15%;
       box-shadow: inset 0em 0em 1em #1a237e;
+      
 
       h3 {
-        font-family: "Berkshire Swash", cursive;
-        padding-top: 30%;
-        //color: #FFC400;
+        font-family: App.$main-text;
+        margin-top: 30%;
+        padding: 0 .5em;
+        text-align: center;
       }
 
       &:before {

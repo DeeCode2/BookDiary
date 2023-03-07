@@ -13,7 +13,7 @@ function EditEntry() {
   const { bookId } = useParams();
   const navigate = useNavigate();
   let editedTitle = useRef();
-  //let editedRating = useRef();
+  let editedAuthor = useRef();
   const [userId, setUserId] = useState("");
   const [userLibrary, setUserLibrary] = useState("");
   const [currentBook, setCurrentBook] = useState("");
@@ -34,7 +34,7 @@ function EditEntry() {
           .then((docSnap) => {
             if (docSnap.exists()) {
               setUserLibrary(docSnap.data());
-              setCurrentBook(docSnap.data().library[bookId - 1]);
+              setCurrentBook(docSnap.data().library.filter((item) => item.bookID == Number(bookId))[0]);
               setDeletedBookLibrary(
                 docSnap
                   .data()
@@ -53,22 +53,29 @@ function EditEntry() {
     });
   }, []);
 
-    function deleteBookEntry() {
+  
 
-        try {
-            updateDoc(doc(firestore, userId, "library"), {
-                library: deletedBookLibrary
-            });
+  //loop over deleted library to make sure that the ids are consistent
+  for (let i = 0; i < deletedBookLibrary.length; i++) {
+    deletedBookLibrary[i].bookID = i+1;
+  }
 
-            setTimeout(() => {
-                window.location = "/library"
-            }, 2000);
 
-            setTimeout();    
-        } catch (err) {
-            console.log(err.message)
-        }
+  function deleteBookEntry() {
+    try {
+      updateDoc(doc(firestore, userId, "library"), {
+        library: deletedBookLibrary,
+      });
+
+      setTimeout(() => {
+        window.location = "/library";
+      }, 2000);
+
+      setTimeout();
+    } catch (err) {
+      console.log(err.message);
     }
+  }
 
   const handleSave = async (e) => {
     e.preventDefault();
@@ -79,19 +86,20 @@ function EditEntry() {
       editedStatus = true;
     } else {
       editedStatus = false;
-    };
+    }
 
     let newRating;
 
     if (editedRating == undefined) {
-        newRating = currentBook.rating
+      newRating = currentBook.rating;
     } else {
-        newRating = changedRating;
+      newRating = changedRating;
     }
 
     const editedEntry = {
       bookID: Number(bookId),
       title: editedTitle.current.value,
+      author: editedAuthor.current.value,
       rating: newRating,
       isRead: editedStatus,
     };
@@ -109,11 +117,10 @@ function EditEntry() {
                 const ref = doc(firestore, userId, "library");
 
                 //get index of unedited recipe
-                const bookIndex = editedEntry.bookID - 1;
+                const bookIndex = editedEntry.bookID;
 
                 //copy array
                 const newArr = docSnap.data().library;
-
 
                 if (bookIndex !== -1) {
                   newArr[bookIndex] = editedEntry;
@@ -124,10 +131,14 @@ function EditEntry() {
                 });
 
                 setTimeout(() => {
-                  navigate(-1);
+                  window.location.replace(
+                    `/library/${editedEntry.bookID}`
+                  );
                 }, 2000);
 
                 setTimeout();
+
+                console.log(editedEntry)
               } else {
                 console.log("No such document!");
               }
@@ -149,54 +160,81 @@ function EditEntry() {
       <div className="modal__content">
         <h3>Edit book entry</h3>
         <form>
-          <input
-            type="text"
-            placeholder="title"
-            defaultValue={currentBook.title}
-            ref={editedTitle}
-          ></input>
-          <Box
-            sx={{
-              "& > legend": { mt: 2 },
-            }}
-          >
-            <Typography component="legend">Rating</Typography>
-            <Rating
-              name="simple-controlled"
-              value={currentBook.rating}
-              onChange={(event, newBookRating) => {
-                editedRating = newBookRating;
-                
-                changedRating = editedRating;
+          <div className="input-group">
+            <label for="title-input">Title</label>
+            <input
+              type="text"
+              placeholder="title"
+              defaultValue={currentBook.title}
+              ref={editedTitle}
+            ></input>
+          </div>
+
+          <div className="input-group">
+            <label for="author-input">Author</label>
+            <input
+              type="text"
+              placeholder="Author"
+              ref={editedAuthor}
+              id="author-input"
+              defaultValue={currentBook.author}
+            ></input>
+          </div>
+          <div className="stats-input">
+            <Box
+              sx={{
+                "& > legend": { mt: 2 },
               }}
-              precision={0.5}
-              //ref={editedRating}
-            />
-          </Box>
-          <div className="checkbox-input">
-            <div className="checkbok-container">
-              <label for="is-read">Completed?</label>
-              {currentBook.isRead ? (
-                <input
-                  type="checkbox"
-                  name="is-read"
-                  id="is-read"
-                  defaultChecked
-                ></input>
-              ) : (
-                <input
-                  type="checkbox"
-                  name="is-read"
-                  id="is-read"
-                  ref={editedRating}
-                ></input>
-              )}
+            >
+              <label for="book-rating" className="input-label">Rating</label>
+              <Rating
+                name="simple-controlled"
+                value={currentBook.rating}
+                onChange={(event, newBookRating) => {
+                  editedRating = newBookRating;
+
+                  changedRating = editedRating;
+                }}
+                precision={0.5}
+                //ref={editedRating}
+              />
+            </Box>
+            <div className="checkbox-input">
+              <div className="checkbok-container">
+                <label for="is-read" className="input-label">Completed?</label>
+                {currentBook.isRead ? (
+                  <input
+                    type="checkbox"
+                    name="is-read"
+                    id="is-read"
+                    defaultChecked
+                  ></input>
+                ) : (
+                  <input
+                    type="checkbox"
+                    name="is-read"
+                    id="is-read"
+                    ref={editedRating}
+                  ></input>
+                )}
+              </div>
             </div>
           </div>
-          <button type="submit" onClick={handleSave}>
+
+          <button type="submit" onClick={handleSave} className="save-btn">
             Save and close
           </button>
-          <button type="button" onClick={deleteBookEntry}>Delete</button>
+          <button
+            type="button"
+            onClick={deleteBookEntry}
+            className="delete-btn"
+          >
+            Delete
+          </button>
+
+          <button className="close-btn" type="button">
+            Close
+          </button>
         </form>
       </div>
     </div>

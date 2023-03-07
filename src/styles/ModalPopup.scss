@@ -1,20 +1,116 @@
+@use "../App.scss";
+
 .modal {
+    //border: solid red;
+    backdrop-filter: blur(3px);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.6);
-    //color: bla;
+    background-color: rgba(0,0,0,0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    //max-width: 400px;
-    //aspect-ratio: 1/1;
+    padding: 3em;
 
     .modal__content {
-        background-color: whitesmoke;
-        padding: 1em;
+        background-color: App.$white;
+        padding: 2.5em;
+        width: 100%;
+        height: 80%;
+        border-radius: .5em;
+        border: solid 1px App.$light-grey;
+        position: relative;
+
+        display: flex;
+        flex-direction: column;
+        //align-items: center;
+        justify-content: center;
+
+        h3 {
+            //border: solid red;
+            font-size: 2rem;
+            //margin: .5em 0;
+        }
+
+        .input-group {
+            //border: solid red;
+
+            display: flex;
+            flex-direction: column;
+            margin: 1.5em 0;
+
+            label {
+                margin: .5em 0;
+            }
+
+            input {
+                padding: 1em;
+                border-radius: .5em;
+            }
+        }
+       
+
+        .checkbox-input {
+            //border: solid red;
+            width: max-content;
+            display: flex;
+
+            label {
+                margin-left: .5em;
+            }
+
+        }
+
+        .stats-input {
+            //border: solid red;
+            display: flex;
+            //align-items: center;
+            max-height: 100px;
+            
+            div {
+                //border: solid green;
+                width: 50%;
+                display: flex;
+                // flex-direction: column;
+                align-items: center;
+                // justify-content: space-between;
+
+                .input-label {
+                    //border: solid red;
+                    //padding: 0 .5em;
+                    margin-right: 1em
+                }
+            }
+        }
+
+        .save-btn {
+            //@include App.basicBtn;
+            //@include App.greenBtn;
+            margin: 1.5em 0;
+            padding: .5em 1em;
+        }
+
+        .delete-btn {
+            //@include App.basicBtn;
+            //@include App.redBtn;
+            margin-left: 1em;
+        }
+
+        .close-btn {
+            //border: solid red;
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 1em;
+        }
+
+        @media only screen and (min-width: 800px) {
+            width: 60%;
+            max-width: 600px;
+        }
+        
     }
 }

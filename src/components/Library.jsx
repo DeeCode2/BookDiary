@@ -72,7 +72,9 @@ function Library() {
             </div>
           </div>
           <div className="book__info">
-            <h4>Author</h4>
+            <h3>{book.title}</h3>
+            <h4>{book.author}</h4>
+            <div className="book__status">
             <Box
               className="rating-container"
               sx={{
@@ -82,12 +84,12 @@ function Library() {
               <Rating
                 name="simple-controlled"
                 value={book.rating}
-                precision={0.5}
+                
                 readOnly
               />
             </Box>
 
-            <div className="book__status">
+            
               {book.isRead ? <CheckCircleIcon /> : <span>Not started</span>}
             </div>
             <Link to={`/library/${book.bookID}`}>Detail</Link>
@@ -97,8 +99,9 @@ function Library() {
     });
 
   return (
-    <main>
+    <div>
       <Navbar />
+      <main>
       <div id="search-input">
         <input
           className="search-input"
@@ -120,7 +123,8 @@ function Library() {
         {bookCards}
       </section>
       <NewBook onClose={() => setShow(false)} show={show} />
-    </main>
+      </main>
+    </div>
   );
 }
 

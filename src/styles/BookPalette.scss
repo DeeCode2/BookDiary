@@ -1,0 +1,43 @@
+@use "../App.scss";
+
+@mixin blueBook {
+  .cover {
+    background-color: #3949ab;
+
+    &:before {
+      background-color: #283593;
+      border-right: solid #1a237e;
+    }
+  }
+
+  .book-base {
+    border: solid 0.5em #1a237e;
+    border-right: none;
+    background-color: #f9fbe7;
+
+    .bookmark {
+      background-color: #d81b60;
+    }
+  }
+}
+
+@mixin greenBook {
+    .cover {
+      background-color: #588157;
+  
+      &:before {
+        background-color: #3a5a40;
+        border-right: solid #344e41;
+      }
+    }
+  
+    .book-base {
+      border: solid 0.5em #344e41;
+      border-right: none;
+      background-color: #f9fbe7;
+  
+      .bookmark {
+        background-color: #4a4e69;
+      }
+    }
+  }

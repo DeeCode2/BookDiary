@@ -1,0 +1,79 @@
+@use "../App.scss";
+
+.user-reg {
+    //border: solid red;
+    //width: 100vw;
+    margin: 0;
+    padding: 0;
+    color: white;
+    display: flex;
+    height: 100vh;
+    max-width: 100vw;
+
+    .split-left {
+        display: none;
+        background-color: App.$primary1;
+    }
+
+    .split-right {
+        width: 100%;
+        //height: 100%;
+        background-color: App.$primary2;
+        
+        align-items: center;
+        justify-content: center;
+        display: flex !important;
+
+        form {
+            //border: solid green;
+            background-color: App.$white;
+            color: App.$dark;
+            padding: 2.5em;
+            border-radius: .5em;
+            border: solid 1px App.$light-grey;
+            max-width: 400px;
+            margin: auto;
+
+            .form-group {
+                //border: solid red;
+    
+                display: flex;
+                flex-direction: column;
+                margin: 1em 0;
+    
+    
+                input {
+                    padding: 1em;
+                    border-radius: .5em;
+                }
+            }
+
+            .yellow-btn {
+                
+                width: 100%;
+                padding: 1em ;
+            }
+        }
+
+        p {
+            //border: solid red;
+            margin: 1em 0;
+        }
+    }
+
+    .split-left, .split-right {
+        //border: solid green;
+        height: 100%;
+        @media only screen and (min-width: 800px) {
+            width: 50%;
+            display: inline-block;
+        }
+    }
+
+    
+
+    @media only screen and (min-width: 800px) {
+        display: flex;
+        
+    }
+}

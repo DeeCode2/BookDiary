@@ -46,10 +46,12 @@ main {
     margin: 2em 0;
     //padding: 1em;
     width: 100%;
-    border-radius: 3em;
+    border-radius: .5em;
     @include App.default-border;
     background-color: App.$white;
     display: flex;
+    justify-content: space-between;
+    padding-right: .5em;
     align-items: center;
 
     @media only screen and (min-width: 900px) {
@@ -78,6 +80,8 @@ main {
   #books {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    
+    //border: solid red;
     grid-gap: 2em;
 
     .book-slot {
@@ -99,6 +103,33 @@ main {
         font-size: 1.5rem;
         font-weight: bold;
         @include App.default-border;
+      }
+    }
+
+    .book__info {
+      //border: solid red;
+      min-height: 175px;
+      
+      display: flex;
+      flex-direction: column;
+      
+      h3 {
+        margin: .5em 0;
+      }
+      
+      a {
+        margin-top: auto;
+        font-family: App.$sub-text;
+        font-size: 1.2em;
+        color: App.$black;
+      }
+
+      .book__status {
+        //border: solid red;
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
     }
 

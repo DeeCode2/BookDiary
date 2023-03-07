@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../../config/AuthContext';
 import { auth } from "../../config/Firebase.jsx";
 import { doc, setDoc, getFirestore } from "firebase/firestore";
+import "../../styles/UserForms.scss";
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
@@ -36,9 +37,11 @@ const SignUp = () => {
     };
 
     return (
-      <main>
+      <main className="user-reg">
+          <div className="split-left"></div>
+          <div className="split-right">
           <form onSubmit={handleSubmit}>
-          <h1>Create your account</h1>
+          <h1>Create an account</h1>
 
             <div className="form-group">
               <label for="email">Email Address</label><br/>
@@ -50,11 +53,12 @@ const SignUp = () => {
               <input onChange={(e) => setPassword(e.target.value)} type='password' id="password"/>
             </div>
 
-            <button className="btn yellow-btn">Sign Up</button>
+            <button className="btn yellowBtn">Sign Up</button>
 
             <p>Already have an account?{' '}<Link to='/'>Sign in.</Link></p>
 
           </form>
+          </div>
       </main>
     );
   };
