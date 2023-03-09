@@ -31,8 +31,6 @@ function App() {
         {/* <Route path='/newbook' element={<ProtectedRoute><NewBook /></ProtectedRoute>} /> */}
         <Route path="/library/:bookId" element={<ProtectedRoute><BookInfo /></ProtectedRoute>} />
         <Route path="/library/:bookId/edit" element={<ProtectedRoute><EditEntry /></ProtectedRoute>} />
-        
-        
       </Routes>
     </AuthContextProvider>
   )
